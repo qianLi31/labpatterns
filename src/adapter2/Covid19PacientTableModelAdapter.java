@@ -1,6 +1,8 @@
 package adapter2;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import javax.swing.table.AbstractTableModel;
@@ -8,11 +10,19 @@ import javax.swing.table.AbstractTableModel;
 import domain.Covid19Pacient;
 import domain.Symptom;
 
-public class Covid19PacientTableModelAdapter extends AbstractTableModel {
+public class Covid19PacientTableModelAdapter extends AbstractTableModel implements Observer {
 	protected Covid19Pacient pacient;
 	protected String[] columnNames =
 			new String[] {"Symptom", "Weight" };
 
+	
+	
+    @Override
+    public void update(Observable o, Object arg) {
+        fireTableDataChanged(); 
+    }
+
+    
 	public Covid19PacientTableModelAdapter(Covid19Pacient p) {
 		this.pacient=p;
 	}
@@ -26,10 +36,10 @@ public class Covid19PacientTableModelAdapter extends AbstractTableModel {
 
 		return columnNames[i];
 	}
-
+	   @Override
 	public int getRowCount() {
-		return columnNames.length+1;
-	}
+		return pacient.getSymptoms().size();
+		}
 
 	public Object getValueAt(int row, int col) {
 
