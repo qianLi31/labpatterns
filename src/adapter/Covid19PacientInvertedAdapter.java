@@ -16,7 +16,7 @@ public class Covid19PacientInvertedAdapter implements InvertedIterator {
         this.pacient = p;
         this.symptoms = new ArrayList<>(p.getSymptoms());
         goLast();
-    }
+    }//prueba
 
     @Override
     public Object previous() {
