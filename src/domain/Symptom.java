@@ -1,11 +1,13 @@
 package domain;
 
-public class Symptom {
+import factory.ISymptom;
+
+public class Symptom implements ISymptom {
 	private String name;
 	private int covidImpact;
 	private int severityIndex;
 
-	public Symptom(String name, int covidImpact, int severityIndex) {
+	public Symptom(String name, int covidImpact, int severityIndex)  {
 		this.name = name;
 		this.covidImpact = covidImpact;
 		this.severityIndex = severityIndex;
@@ -32,4 +34,9 @@ public class Symptom {
 	public String toString() {
 		return name;
 	}
+	
+    @Override
+    public int getAffectedDays() {
+        return 5;
+    }
 }
